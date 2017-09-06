@@ -1,0 +1,2 @@
+#! /bin/sh
+curl dict.org/d:$1:wn
