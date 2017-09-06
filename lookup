@@ -1,2 +1,2 @@
 #! /bin/sh
-curl dict.org/d:$1:wn
+curl dict.org/d:$1:wn | awk -F'[0-9]{3}|250 ok' '{print $1}'
