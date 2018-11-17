@@ -1,14 +1,16 @@
 #! /bin/sh
 NOW=`date +%s`
-REL=`date -d 'APR 24 00:00:00 2014' +%s`
+REL=`date -d 'FEB 08 00:00:00 2018' +%s`
 SECS=$(($NOW-$REL))
-WEEK_NO=$(($SECS/3600/24/7))
-while !wget -q https://rust.facepunch.com/blog/devblog$WEEK_NO/ || ! wget -q https://rust.facepunch.com/blog/devblog-$WEEK_NO/; do
+WEEK_NO=$(($SECS/3600/24/(7*4)))
+OFFSET=197
+DEVBLOG_NO=$(($WEEK_NO+$OFFSET))
+while ! wget -q https://rust.facepunch.com/blog/devblog-$DEVBLOG_NO/ | grep -iq "Page Not Found"; do
 echo `date +%T`
-echo $WEEK_NO
+echo $DEVBLOG_NO
 echo "NOT FOUND"
 sleep 5s
 done
 echo "DEVBLOG IS LIVE"
-#paplay ./alarm.wav
+#play an audio track to notify user
 #paplay ./alarm.wav
